@@ -372,10 +372,10 @@ export default function App() {
   return (
     // translate="no" を追加して翻訳を無効化
     <div className="min-h-screen bg-slate-950 text-slate-200 p-2 md:p-4 flex flex-col items-center justify-center font-sans overflow-x-hidden" translate="no">
-      <div className="w-full max-w-6xl bg-slate-900 rounded-[2rem] shadow-[0_0_40px_rgba(0,0,0,0.5)] p-4 md:p-8 border border-slate-800 ring-1 ring-white/5">
+      <div className="w-full max-w-7xl bg-slate-900 rounded-[2rem] shadow-[0_0_40px_rgba(0,0,0,0.5)] p-4 md:p-8 border border-slate-800 ring-1 ring-white/5">
         
         {/* Header Section */}
-        <div className="flex flex-col xl:flex-row justify-between items-center mb-6 md:mb-10 gap-6 md:gap-8">
+        <div className="flex flex-col xl:flex-row justify-between items-center mb-6 md:mb-10 gap-6 xl:gap-8 flex-wrap">
           <div className="flex items-center gap-3">
             <div className="p-2 md:p-3 bg-indigo-500/20 rounded-full border border-indigo-500/30 shadow-[0_0_15px_rgba(99,102,241,0.3)]">
               <Moon className="w-6 h-6 md:w-8 md:h-8 text-indigo-400" />
