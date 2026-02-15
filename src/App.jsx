@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { Play, Square, Volume2, Trash2, Music, Download, Shuffle, ChevronRight, Volume1, Smile, Moon } from 'lucide-react';
+import { Play, Square, Volume2, VolumeX, Trash2, Music, Download, Shuffle, ChevronRight, Volume1, Smile, Moon } from 'lucide-react';
 
 /**
  * Web Audio APIを使用したドラムシンセサイザーエンジン
@@ -232,6 +232,7 @@ export default function App() {
   const [currentStep, setCurrentStep] = useState(0);
   const [bpm, setBpm] = useState(120);
   const [volume, setVolume] = useState(0.5);
+  const [isMuted, setIsMuted] = useState(false);
   
   const bpmRef = useRef(bpm);
   useEffect(() => { bpmRef.current = bpm; }, [bpm]);
@@ -264,7 +265,19 @@ export default function App() {
   const handleVolumeChange = (e) => {
     const newVol = parseFloat(e.target.value);
     setVolume(newVol);
+    // スライダーを動かしたらミュート解除
+    if (isMuted) setIsMuted(false);
     audioEngine.setVolume(newVol);
+  };
+
+  const toggleMute = () => {
+    if (isMuted) {
+      audioEngine.setVolume(volume);
+      setIsMuted(false);
+    } else {
+      audioEngine.setVolume(0);
+      setIsMuted(true);
+    }
   };
 
   const playStep = (stepIndex, time) => {
@@ -513,7 +526,7 @@ export default function App() {
               return (
                 <div key={inst} className="flex items-center mb-3 md:mb-4 group/row">
                   <div className="w-28 md:w-40 flex items-center justify-end pr-4 md:pr-8">
-                    <span className="text-[10px] md:text-xs font-bold text-slate-500 tracking-wider text-right group-hover/row:text-indigo-300 transition-colors uppercase">
+                    <span className="text-[9px] md:text-xs font-bold text-slate-500 tracking-wider text-right group-hover/row:text-indigo-300 transition-colors uppercase">
                       {inst}
                     </span>
                   </div>
@@ -554,11 +567,17 @@ export default function App() {
         {/* Footer info */}
         <div className="mt-6 md:mt-8 flex flex-col md:flex-row justify-between items-center text-[10px] text-slate-500 border-t border-slate-800 pt-6 uppercase tracking-widest font-bold gap-4 md:gap-0">
           <div className="flex gap-4 md:gap-10">
-            <span className="flex items-center gap-2 px-3 py-1 bg-slate-900 rounded-full border border-slate-800">
-              <Volume2 size={14} className="text-emerald-400"/> 
-              Synth Audio
-            </span>
-            <span className="flex items-center gap-2 px-3 py-1 bg-slate-900 rounded-full border border-slate-800">
+            <button 
+              onClick={toggleMute}
+              className={`flex items-center gap-2 md:gap-3 px-3 py-1 md:px-4 md:py-1.5 rounded-full border transition-colors ${isMuted ? 'bg-slate-800 border-slate-700' : 'bg-slate-900 border-slate-800'}`}
+            >
+              <div className={isMuted ? "text-slate-500" : "text-emerald-400"}>
+                {isMuted ? <VolumeX size={14} className="md:hidden" /> : <Volume2 size={14} className="md:hidden"/>}
+                {isMuted ? <VolumeX size={14} className="hidden md:block" /> : <Volume2 size={14} className="hidden md:block"/>}
+              </div>
+              <span className="text-slate-500">{isMuted ? "Muted" : "Synth Audio"}</span>
+            </button>
+            <span className="flex items-center gap-2 md:gap-3 px-3 py-1 md:px-4 md:py-1.5 bg-slate-900 rounded-full border border-slate-800">
               Grid: {STEPS} Steps
             </span>
           </div>
