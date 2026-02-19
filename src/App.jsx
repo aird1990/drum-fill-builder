@@ -162,57 +162,999 @@ const PPQ = 480;
 
 const PRESET_CATEGORIES = {
   '1-Beat': {
-    'No.1 1-Beat 1': (grid, getIdx) => {
+    '1-Beat 1': (grid, getIdx) => {
       [0, 8, 10].forEach(s => grid[getIdx("Kick")][s] = true);
       [4, 12, 13].forEach(s => grid[getIdx("Snare")][s] = true);
       [0, 2, 4, 6, 8, 10].forEach(s => grid[getIdx("Closed Hi-hat")][s] = true);
       grid[getIdx("High Tom")][14] = true;
     },
-    'Variation 2': (grid, getIdx) => {
+    '1-Beat 2': (grid, getIdx) => {
       [0, 8, 10].forEach(s => grid[getIdx("Kick")][s] = true);
       [4, 12, 13].forEach(s => grid[getIdx("Snare")][s] = true);
       [0, 2, 4, 6, 8, 10].forEach(s => grid[getIdx("Closed Hi-hat")][s] = true);
       grid[getIdx("High Tom")][14] = true;
       grid[getIdx("Low Tom")][15] = true;
     },
-    'Variation 3': (grid, getIdx) => {
-      const setCol = (col, instruments) => instruments.forEach(name => {
-        const idx = getIdx(name);
-        if (idx !== -1) grid[idx][col] = true;
-      });
-      const allExcSnare = ["Crash", "High Tom", "Mid Tom", "Low Tom", "Open Hi-hat", "Closed Hi-hat", "Kick"];
-      const allExcKick = ["Crash", "High Tom", "Mid Tom", "Low Tom", "Open Hi-hat", "Closed Hi-hat", "Snare"];
-      setCol(0, allExcSnare); setCol(2, ["Closed Hi-hat"]); setCol(4, allExcKick);
-      setCol(6, ["Closed Hi-hat"]); setCol(8, allExcSnare); setCol(10, ["Closed Hi-hat", "Kick"]);
-      setCol(12, allExcKick); setCol(14, ["Snare", "High Tom"]);
+    '1-Beat 3': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0, 8, 10]);
+      addSteps("Snare", [4, 12, 13, 14, 15]);
+      addSteps("Closed Hi-hat", [0, 2, 4, 6, 8, 10]);
+    },
+    '1-Beat 4': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0, 8, 10]);
+      addSteps("Snare", [4, 12, 13, 14, 15]);
+      addSteps("Closed Hi-hat", [0, 2, 4, 6, 8, 10]);
+      addSteps("Low Tom", [12, 13, 14, 15]);
+    },
+    '1-Beat 5': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0, 8]);
+      addSteps("Snare", [4, 12, 13]);
+      addSteps("Closed Hi-hat", [0, 2, 4, 6, 8, 10]);
+      addSteps("High Tom", [14, 15]);
+    },
+    '1-Beat 6': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0, 8]);
+      addSteps("Snare", [4, 12, 13]);
+      addSteps("Closed Hi-hat", [0, 2, 4, 6, 8, 10]);
+      addSteps("Low Tom", [14, 15]);
+    },
+    '1-Beat 7': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0, 8]);
+      addSteps("Snare", [4, 12]);
+      addSteps("Closed Hi-hat", [0, 2, 4, 6, 8, 10]);
+      addSteps("High Tom", [13]);
+      addSteps("Low Tom", [14, 15]);
+    },
+    '1-Beat 8': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0, 8]);
+      addSteps("Snare", [4, 11, 12, 13]);
+      addSteps("Closed Hi-hat", [0, 2, 4, 6, 8, 10]);
+      addSteps("High Tom", [14]);
+    },
+    '1-Beat 9': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0, 8]);
+      addSteps("Snare", [4, 11, 12]);
+      addSteps("Closed Hi-hat", [0, 2, 4, 6, 8, 10]);
+      addSteps("High Tom", [13]);
+      addSteps("Low Tom", [14]);
+    },
+    '1-Beat 10': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0, 8]);
+      addSteps("Snare", [4, 11, 12, 14, 15]);
+      addSteps("Closed Hi-hat", [0, 2, 4, 6, 8, 10]);
+    },
+    '1-Beat 11': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0, 8, 13]);
+      addSteps("Snare", [4, 11, 12]);
+      addSteps("Closed Hi-hat", [0, 2, 4, 6, 8, 10]);
+      addSteps("Low Tom", [14, 15]);
+    },
+    '1-Beat 12': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0, 8, 15]);
+      addSteps("Snare", [4, 11, 12]);
+      addSteps("Closed Hi-hat", [0, 2, 4, 6, 8, 10]);
+      addSteps("High Tom", [13]);
+      addSteps("Low Tom", [14]);
     }
+    // 'Intense Fill 3': (grid, getIdx) => {
+    //   const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+    //   addSteps("Kick", [0, 2, 8, 10]);
+    //   addSteps("Snare", [4, 12, 13]);
+    //   addSteps("Closed Hi-hat", [0, 2, 4, 6, 8, 10, 12, 14]);
+    //   addSteps("Open Hi-hat", [0, 4, 8, 12]);
+    //   addSteps("Low Tom", [4, 5, 10, 11]);
+    //   addSteps("Mid Tom", [2, 5, 11, 12]);
+    //   addSteps("High Tom", [2, 6, 10, 11]);
+    //   addSteps("Crash", [0, 8, 9]);
+    // },
+    // 'Intense Fill 3': (grid, getIdx) => {
+    //   const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+    //   addSteps("Kick", [0, 2, 8, 10]);
+    //   addSteps("Snare", [4, 12, 13]);
+    //   addSteps("Closed Hi-hat", [0, 2, 4, 6, 8, 10, 12, 14]);
+    //   addSteps("Open Hi-hat", [0, 4, 8, 12]);
+    //   addSteps("Low Tom", [4, 5, 10, 11]);
+    //   addSteps("Mid Tom", [2, 5, 11, 12]);
+    //   addSteps("High Tom", [2, 6, 10, 11]);
+    //   addSteps("Crash", [0, 8, 9]);
+    // }
   },
   '2-Beat': {
-    'Simple 2-Beat': (grid, getIdx) => {
-      for(let i=0; i<8; i+=2) grid[getIdx("Closed Hi-hat")][i] = true;
-      grid[getIdx("Kick")][0] = true; grid[getIdx("Snare")][4] = true;
-      [8, 10, 12, 14].forEach(s => grid[getIdx("Snare")][s] = true);
-      [9, 11, 13, 15].forEach(s => grid[getIdx("Low Tom")][s] = true);
+    // 21
+    '2-Beat 1': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0]);
+      addSteps("Snare", [4, 8, 9, 10, 11, 12, 13, 14, 15]);
+      addSteps("Closed Hi-hat", [0, 2, 4, 6]);
+    },
+    '2-Beat 2': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0]);
+      addSteps("Snare", [4, 8, 10, 11, 12, 13, 14, 15]);
+      addSteps("Closed Hi-hat", [0, 2, 4, 6]);
+    },
+    '2-Beat 3': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0]);
+      addSteps("Snare", [4, 8, 10, 11, 12, 13, 14, 15]);
+      addSteps("Closed Hi-hat", [0, 2, 4, 6]);
+    },
+    '2-Beat 4': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0]);
+      addSteps("Snare", [4, 11, 12]);
+      addSteps("Closed Hi-hat", [0, 2, 4, 6]);
+      addSteps("Low Tom", [14, 15]);
+      addSteps("Mid Tom", [10]);
+      addSteps("High Tom", [8, 9, 13]);
+    },
+    '2-Beat 5': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0]);
+      addSteps("Snare", [4, 8, 11, 12, 14, 15]);
+      addSteps("Closed Hi-hat", [0, 2, 4, 6]);
+      addSteps("Low Tom", [10]);
+      addSteps("High Tom", [9]);
+    },
+    '2-Beat 6': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0]);
+      addSteps("Snare", [4, 8, 9]);
+      addSteps("Closed Hi-hat", [0, 2, 4, 6]);
+      addSteps("High Tom", [10]);
+      addSteps("Mid Tom", [12, 13]);
+      addSteps("Low Tom", [14]);
+    },
+    '2-Beat 7': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0]);
+      addSteps("Snare", [4, 8, 12, 14, 15]);
+      addSteps("Closed Hi-hat", [0, 2, 4, 6]);
+      addSteps("High Tom", [9]);
+      addSteps("Low Tom", [10]);
+    },
+    // 28
+    '2-Beat 8': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0]);
+      addSteps("Snare", [4, 8, 9, 11, 12, 14, 15]);
+      addSteps("Closed Hi-hat", [0, 2, 4, 6]);
+    },
+    // 29
+    '2-Beat 9': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0]);
+      addSteps("Snare", [4, 8, 9, 11, 12]);
+      addSteps("Closed Hi-hat", [0, 2, 4, 6]);
+      addSteps("High Tom", [13]);
+      addSteps("Low Tom", [14]);
+    },
+    // 30
+    '2-Beat 10': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0]);
+      addSteps("Snare", [4, 8, 9, 11, 12]);
+      addSteps("Closed Hi-hat", [0, 2, 4, 6]);
+      addSteps("High Tom", [13]);
+      addSteps("Low Tom", [14, 15]);
+    },
+    // 31
+    '2-Beat 11': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0, 15]);
+      addSteps("Snare", [4, 8, 9, 11, 12]);
+      addSteps("Closed Hi-hat", [0, 2, 4, 6]);
+      addSteps("High Tom", [13]);
+      addSteps("Low Tom", [14]);
+    },
+    // 32
+    '2-Beat 12': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0]);
+      addSteps("Snare", [4, 8, 12]);
+      addSteps("Closed Hi-hat", [0, 2, 4, 6]);
+      addSteps("High Tom", [10, 13]);
+      addSteps("Low Tom", [14]);
+    },
+    // 33
+    '2-Beat 13': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0]);
+      addSteps("Snare", [4, 8, 10, 12, 13]);
+      addSteps("Closed Hi-hat", [0, 2, 4, 6]);
+      addSteps("High Tom", [14]);
+    },
+    // 34
+    '2-Beat 14': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0]);
+      addSteps("Snare", [4, 8, 10, 12]);
+      addSteps("Closed Hi-hat", [0, 2, 4, 6]);
+      addSteps("High Tom", [13]);
+      addSteps("Low Tom", [14]);
+    },
+    // 35
+    '2-Beat 15': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0, 11, 13]);
+      addSteps("Snare", [4, 8]);
+      addSteps("Closed Hi-hat", [0, 2, 4, 6]);
+      addSteps("High Tom", [9, 14, 15]);
+      addSteps("Low Tom", [10, 12]);
+    },
+    // 38 36-37はカット
+    '2-Beat 16': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0, 9, 11, 13]);
+      addSteps("Snare", [4, 8]);
+      addSteps("Closed Hi-hat", [0, 2, 4, 6]);
+      addSteps("Low Tom", [10, 12, 14, 15]);
+      addSteps("Crash", [8]);
+    },
+    // 39
+    '2-Beat 17': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0, 9, 10, 13, 14]);
+      addSteps("Snare", [4, 12]);
+      addSteps("Closed Hi-hat", [0, 2, 4, 6]);
+      addSteps("High Tom", [8]);
+      addSteps("Mid Tom", [11]);
+      addSteps("Low Tom", [15]);
+    },
+    // 40
+    '2-Beat 18': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0, 13, 14]);
+      addSteps("Snare", [4, 8, 10, 11]);
+      addSteps("Closed Hi-hat", [0, 2, 4, 6, 9]);
+      addSteps("Low Tom", [12, 15]);
+    },
+    // ドラムフィル演奏の究極ガイド 3:17
+    '2-Beat 19': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0]);
+      addSteps("Snare", [4, 8, 10, 11, 12, 14, 15]);
+      addSteps("Closed Hi-hat", [0, 2, 4, 6]);
+    },
+    // ドラムフィル演奏の究極ガイド 3:23
+    '2-Beat 20': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0]);
+      addSteps("Snare", [4, 8, 9, 10, 12, 13, 14]);
+      addSteps("Closed Hi-hat", [0, 2, 4, 6]);
+    },
+    // ドラムフィル演奏の究極ガイド 3:44
+    '2-Beat 21': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0]);
+      addSteps("Snare", [4, 8, 10, 12, 13, 14]);
+      addSteps("Closed Hi-hat", [0, 2, 4, 6]);
+    },
+    // ドラムフィル演奏の究極ガイド 3:48
+    '2-Beat 22': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0]);
+      addSteps("Snare", [4, 8, 10, 11, 12, 13, 14, 15]);
+      addSteps("Closed Hi-hat", [0, 2, 4, 6]);
+    },
+    // ドラムフィル演奏の究極ガイド 3:54
+    '2-Beat 23': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0]);
+      addSteps("Snare", [4, 8, 9, 11, 12, 13, 14]);
+      addSteps("Closed Hi-hat", [0, 2, 4, 6]);
+    },
+    // ドラムフィル演奏の究極ガイド 3:59
+    '2-Beat 24': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0]);
+      addSteps("Snare", [4, 8, 9, 11, 12, 14, 15]);
+      addSteps("Closed Hi-hat", [0, 2, 4, 6]);
+    },
+    // ドラムフィル演奏の究極ガイド 4:10
+    '2-Beat 25': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0]);
+      addSteps("Snare", [4, 8, 9, 11, 12, 14, 15]);
+      addSteps("Closed Hi-hat", [0, 2, 4, 6]);
+    },
+    // ドラムフィル演奏の究極ガイド 4:10
+    '2-Beat 26': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0]);
+      addSteps("Snare", [4, 8, 12, 13]);
+      addSteps("Closed Hi-hat", [0, 2, 4, 6]);
+      addSteps("High Tom", [10]);
+      addSteps("Low Tom", [14]);
+    },
+    // ドラムフィル演奏の究極ガイド 4:16
+    '2-Beat 27': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0]);
+      addSteps("Snare", [4, 8, 11, 12]);
+      addSteps("Closed Hi-hat", [0, 2, 4, 6]);
+      addSteps("High Tom", [10, 13]);
+      addSteps("Low Tom", [14, 15]);
+    },
+    // ドラムフィル演奏の究極ガイド 4:21
+    '2-Beat 28': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0]);
+      addSteps("Snare", [4, 8, 11, 12]);
+      addSteps("Closed Hi-hat", [0, 2, 4, 6]);
+      addSteps("High Tom", [9, 13]);
+      addSteps("Low Tom", [15]);
+    },
+    // ドラムフィル演奏の究極ガイド 4:26
+    '2-Beat 29': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0]);
+      addSteps("Snare", [4, 8, 9]);
+      addSteps("Closed Hi-hat", [0, 2, 4, 6]);
+      addSteps("High Tom", [11, 12]);
+      addSteps("Low Tom", [14, 15]);
     }
+
   },
   '3-Beat': {
-    'Triplet Fill': (grid, getIdx) => {
-      [0, 2, 4].forEach(s => grid[getIdx("Kick")][s] = true);
-      [4, 8, 10, 12, 14].forEach(s => grid[getIdx("High Tom")][s] = true);
-      [9, 11, 13, 15].forEach(s => grid[getIdx("Mid Tom")][s] = true);
+    // 41
+    '3-Beat 1': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0]);
+      addSteps("Snare", [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 14, 15]);
+      addSteps("Closed Hi-hat", [0, 2]);
+    },
+    // 42
+    '3-Beat 2': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0]);
+      addSteps("Snare", [4]);
+      addSteps("Closed Hi-hat", [0, 2]);
+      addSteps("High Tom", [5, 6, 7]);
+      addSteps("Mid Tom", [8, 9, 10, 11]);
+      addSteps("Low Tom", [12, 13, 14, 15]);
+    },
+    // 43
+    '3-Beat 3': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0]);
+      addSteps("Snare", [4, 5, 7, 8, 9, 11, 12, 13, 15]);
+      addSteps("Closed Hi-hat", [0, 2]);
+    },
+    // 44
+    '3-Beat 4': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0]);
+      addSteps("Snare", [4, 8, 12, 14, 15]);
+      addSteps("Closed Hi-hat", [0, 2]);
+      addSteps("High Tom", [5, 9]);
+      addSteps("Low Tom", [7, 11]);
+      addSteps("Crash", [12]);
+    },
+    // 45
+    '3-Beat 5': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0, 5, 7, 9, 11]);
+      addSteps("Snare", [4, 12]);
+      addSteps("Closed Hi-hat", [0, 2, 4]);
+      addSteps("Low Tom", [8]);
+      addSteps("Crash", [12]);
+    },
+    // 46
+    '3-Beat 6': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0, 8, 12]);
+      addSteps("Snare", [4]);
+      addSteps("Closed Hi-hat", [0, 2]);
+      addSteps("High Tom", [6, 7]);
+      addSteps("Mid Tom", [10, 11]);
+      addSteps("Low Tom", [14, 15]);
+      addSteps("Crash", [4, 8, 12]);
+    },
+    // 47
+    '3-Beat 7': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0]);
+      addSteps("Snare", [4, 7, 8, 10, 13, 14]);
+      addSteps("Closed Hi-hat", [0, 2]);
+      addSteps("High Tom", [5, 11]);
+      addSteps("Low Tom", [6, 12]);
+    },
+    // 48
+    '3-Beat 8': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0]);
+      addSteps("Closed Hi-hat", [0, 2]);
+      addSteps("High Tom", [4, 5, 7]);
+      addSteps("Mid Tom", [8, 9, 11]);
+      addSteps("Low Tom", [12, 13, 15]);
+    },
+    // 49
+    '3-Beat 9': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0, 5, 8, 11, 13]);
+      addSteps("Snare", [4, 6, 7, 12]);
+      addSteps("Closed Hi-hat", [0, 2]);
+      addSteps("High Tom", [9, 10]);
+      addSteps("Low Tom", [14, 15]);
+      addSteps("Crash", [4]);
+    },
+    // 50
+    '3-Beat 10': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0, 4, 7, 9]);
+      addSteps("Snare", [8]);
+      addSteps("Closed Hi-hat", [0, 2]);
+      addSteps("High Tom", [5, 6, 10, 11]);
+      addSteps("Mid Tom", [12, 13]);
+      addSteps("Low Tom", [14, 15]);
+      addSteps("Crash", [4]);
+    },
+    // 51
+    '3-Beat 11': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0, 10, 13]);
+      addSteps("Snare", [4, 6, 8, 9]);
+      addSteps("Closed Hi-hat", [0, 2]);
+      addSteps("High Tom", [11, 12]);
+      addSteps("Mid Tom", [14, 15]);
+      addSteps("Crash", [4, 6]);
+    },
+    // 52
+    '3-Beat 12': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0, 8, 11]);
+      addSteps("Snare", [4, 5, 6, 7]);
+      addSteps("Closed Hi-hat", [0, 2, 4]);
+      addSteps("High Tom", [9, 10]);
+      addSteps("Mid Tom", [12, 13]);
+      addSteps("Low Tom", [14, 15]);
+    },
+    // 53
+    '3-Beat 13': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0, 7]);
+      addSteps("Snare", [4, 8, 10]);
+      addSteps("Closed Hi-hat", [0, 2]);
+      addSteps("High Tom", [5, 12, 13]);
+      addSteps("Low Tom", [6, 14, 15]);
+      addSteps("Crash", [8, 10]);
+    },
+    // 54
+    '3-Beat 14': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0, 7]);
+      addSteps("Snare", [4, 10]);
+      addSteps("Closed Hi-hat", [0, 2]);
+      addSteps("Low Tom", [6, 8, 12, 14, 15]);
+      addSteps("Crash", [4, 10]);
+    },
+    // 55
+    '3-Beat 15': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0, 7]);
+      addSteps("Snare", [4]);
+      addSteps("Closed Hi-hat", [0, 2]);
+      addSteps("High Tom", [6, 7, 8]);
+      addSteps("Mid Tom", [10, 11, 12]);
+      addSteps("Low Tom", [14, 15]);
+    },
+    // 57 56はカット
+    '3-Beat 16': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0, 7, 8, 12, 13]);
+      addSteps("Snare", [4, 5, 6, 14, 15]);
+      addSteps("Closed Hi-hat", [0, 4]);
+      addSteps("Open Hi-hat", [2]);
+      addSteps("High Tom", [9, 10, 11]);
+    },
+    // 58
+    '3-Beat 17': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0, 5, 8, 9]);
+      addSteps("Snare", [4, 12, 14, 15]);
+      addSteps("Closed Hi-hat", [0, 2, 12]);
+      addSteps("Open Hi-hat", [10]);
+      addSteps("Low Tom", [6, 7]);
+    },
+    // 59
+    '3-Beat 18': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0, 9, 13]);
+      addSteps("Snare", [4, 7, 8, 11, 12]);
+      addSteps("Closed Hi-hat", [0, 2, 6, 10]);
+      addSteps("Open Hi-hat", [5, 9]);
+      addSteps("Low Tom", [5, 14, 15]);
+    },
+    // 61 60はカット
+    '3-Beat 19': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0, 4, 5, 8, 9, 12, 13]);
+      addSteps("Snare", [6, 7]);
+      addSteps("Closed Hi-hat", [0, 2]);
+      addSteps("High Tom", [10, 11]);
+      addSteps("Low Tom", [14, 15]);
+    },
+    // 62
+    '3-Beat 20': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0, 4, 7, 8, 11, 12, 15]);
+      addSteps("Closed Hi-hat", [0, 2]);
+      addSteps("High Tom", [5, 6]);
+      addSteps("Mid Tom", [9, 10]);
+      addSteps("Low Tom", [13, 14]);
+    },
+    // ドラムフィル演奏の究極ガイド 5:27
+    '3-Beat 21': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0]);
+      addSteps("Snare", [4, 5, 8, 10, 11, 12]);
+      addSteps("Closed Hi-hat", [0, 2]);
+      addSteps("High Tom", [6, 13]);
+      addSteps("Low Tom", [14]);
+    },
+    // ドラムフィル演奏の究極ガイド 5:30
+    '3-Beat 22': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0]);
+      addSteps("Snare", [4, 5, 6, 10, 11, 12]);
+      addSteps("Closed Hi-hat", [0, 2]);
+      addSteps("High Tom", [7, 8, 13]);
+      addSteps("Low Tom", [14]);
+    },
+    // ドラムフィル演奏の究極ガイド 5:35
+    '3-Beat 23': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0]);
+      addSteps("Snare", [4, 7, 10, 12]);
+      addSteps("Closed Hi-hat", [0, 2]);
+      addSteps("High Tom", [5, 8, 11, 13]);
+      addSteps("Low Tom", [14, 15]);
+    },
+    // ドラムフィル演奏の究極ガイド 5:40
+    '3-Beat 24': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0]);
+      addSteps("Snare", [4, 5]);
+      addSteps("Closed Hi-hat", [0, 2]);
+      addSteps("High Tom", [7, 8]);
+      addSteps("Low Tom", [10, 11, 13, 14]);
+    },
+    // ドラムフィル演奏の究極ガイド 6:01
+    '3-Beat 25': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0]);
+      addSteps("Snare", [4, 6, 7, 8, 9]);
+      addSteps("Closed Hi-hat", [0, 2, 4]);
+      addSteps("High Tom", [10, 11, 12, 13]);
+      addSteps("Low Tom", [14, 15]);
+    },
+    // ドラムフィル演奏の究極ガイド 6:06
+    '3-Beat 26': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0]);
+      addSteps("Snare", [4, 6, 7, 10, 11, 12]);
+      addSteps("Closed Hi-hat", [0, 2, 4]);
+      addSteps("High Tom", [8, 13]);
+      addSteps("Low Tom", [14]);
+    },
+    // ドラムフィル演奏の究極ガイド 6:06
+    '3-Beat 26': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0]);
+      addSteps("Snare", [4, 6, 7, 10, 11, 12]);
+      addSteps("Closed Hi-hat", [0, 2, 4]);
+      addSteps("High Tom", [8, 13]);
+      addSteps("Low Tom", [14]);
+    },
+    // ドラムフィル演奏の究極ガイド 6:11
+    '3-Beat 27': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0]);
+      addSteps("Snare", [4, 6, 9, 11, 12]);
+      addSteps("Closed Hi-hat", [0, 2, 4]);
+      addSteps("High Tom", [7, 10, 13]);
+      addSteps("Low Tom", [14, 15]);
+    },
+    // ドラムフィル演奏の究極ガイド 6:16
+    '3-Beat 28': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0]);
+      addSteps("Snare", [4]);
+      addSteps("Closed Hi-hat", [0, 2, 4]);
+      addSteps("High Tom", [6, 7, 9]);
+      addSteps("Low Tom", [10, 12, 13, 14]);
     }
+
   },
   '4-Beat': {
-    'Intense Fill': (grid, getIdx) => {
+    // 63
+    '4-Beat 1': (grid, getIdx) => {
       const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
       addSteps("Kick", [0, 2, 8, 10]);
-      addSteps("Snare", [4, 12, 13]);
-      addSteps("Closed Hi-hat", [0, 2, 4, 6, 8, 10, 12, 14]);
-      addSteps("Open Hi-hat", [0, 4, 8, 12]);
-      addSteps("Low Tom", [4, 5, 10, 11]);
-      addSteps("Mid Tom", [2, 5, 11, 12]);
-      addSteps("High Tom", [2, 6, 10, 11]);
-      addSteps("Crash", [0, 8, 9]);
+      addSteps("Open Hi-hat", [0, 2, 8, 10]);
+      addSteps("High Tom", [4, 5, 6, 7]);
+      addSteps("Mid Tom", [12, 13]);
+      addSteps("Low Tom", [14, 15]);
+    },
+    // 64
+    '4-Beat 2': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Snare", [0, 1, 6, 7, 12, 13, 14, 15]);
+      addSteps("High Tom", [2]);
+      addSteps("Mid Tom", [4, 8]);
+      addSteps("Low Tom", [10]);
+    },
+    // 65
+    '4-Beat 3': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [1, 3, 4, 6, 8, 10]);
+      addSteps("Snare", [0, 12]);
+      addSteps("High Tom", [5]);
+      addSteps("Low Tom", [0, 5]);
+      addSteps("Crash", [12]);
+    },
+    // 66
+    '4-Beat 4': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Snare", [0, 1, 2, 3]);
+      addSteps("High Tom", [4, 5, 6, 7]);
+      addSteps("Mid Tom", [8, 9, 10, 11]);
+      addSteps("Low Tom", [12, 13, 14, 15]);
+    },
+    // 67
+    '4-Beat 5': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Snare", [0, 1, 2, 3]);
+      addSteps("High Tom", [4, 5, 6, 7]);
+      addSteps("Mid Tom", [8, 9, 10, 11]);
+      addSteps("Low Tom", [12, 13, 14, 15]);
+    },
+    // 67
+    '4-Beat 6': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [1, 4, 8, 12]);
+      addSteps("Snare", [2, 3]);
+      addSteps("High Tom", [6, 7]);
+      addSteps("Mid Tom", [10, 11]);
+      addSteps("Low Tom", [14, 15]);
+      addSteps("Crash", [0, 4, 8, 12]);
+    },
+    // 68
+    '4-Beat 7': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Snare", [0, 1]);
+      addSteps("High Tom", [2, 4, 5]);
+      addSteps("Mid Tom", [6, 8, 9]);
+      addSteps("Low Tom", [10, 12, 13, 14]);
+    },
+    // 69
+    '4-Beat 8': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [3, 7, 11]);
+      addSteps("Snare", [0, 12, 13, 14, 15]);
+      addSteps("High Tom", [1, 4, 5]);
+      addSteps("Mid Tom", [6, 8, 9]);
+      addSteps("Low Tom", [2, 10]);
+    },
+    // 70
+    '4-Beat 9': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Snare", [0, 2, 4, 6, 8, 12]);
+      addSteps("High Tom", [10, 13]);
+      addSteps("Low Tom", [14]);
+    },
+    // 72 71はカット
+    '4-Beat 10': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [4, 7, 10, 13]);
+      addSteps("Snare", [0, 1, 2, 3]);
+      addSteps("High Tom", [5, 6]);
+      addSteps("Mid Tom", [8, 9]);
+      addSteps("Low Tom", [11, 12, 14, 15]);
+    },
+    // 73
+    '4-Beat 11': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [5, 11]);
+      addSteps("Snare", [0, 1, 2, 3, 4]);
+      addSteps("High Tom", [6, 7, 8, 9, 10]);
+      addSteps("Mid Tom", [12, 13]);
+      addSteps("Low Tom", [14, 15]);
+    },
+    // 74
+    '4-Beat 12': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0, 6, 10]);
+      addSteps("Snare", [2, 3, 4, 5, 8, 9, 12, 14, 15]);
+      addSteps("Closed Hi-hat", [8, 12]);
+      addSteps("Open Hi-hat", [6, 10]);
+    },
+    // 75
+    '4-Beat 13': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [1, 4, 7, 10]);
+      addSteps("Snare", [0, 3, 6, 9, 12, 13, 14, 15]);
+      addSteps("Crash", [1, 4, 7, 10]);
+    },
+    // 76
+    '4-Beat 14': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [2, 5, 8, 10, 11]);
+      addSteps("Snare", [0, 3, 6, 9, 12, 13, 14, 15]);
+      addSteps("Crash", [1, 3, 6, 9]);
+    },
+    // 77
+    '4-Beat 15': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0, 2, 3, 5]);
+      addSteps("Snare", [1, 4, 6, 8]);
+      addSteps("High Tom", [10, 11]);
+      addSteps("Mid Tom", [12, 13]);
+      addSteps("Low Tom", [14, 15]);
+      addSteps("Crash", [1, 4, 6]);
+    },
+    // 78
+    '4-Beat 16': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [1, 3, 5, 7, 9, 11]);
+      addSteps("Snare", [0, 2, 6, 8, 12, 13, 14, 15]);
+      addSteps("Closed Hi-hat", [4, 10]);
+      addSteps("Open Hi-hat", [3, 9]);
+      addSteps("Low Tom", [0, 6]);
+    },
+    // 79
+    '4-Beat 17': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [2, 3, 6, 7, 10, 11]);
+      addSteps("Snare", [0, 1, 12]);
+      addSteps("High Tom", [4, 5]);
+      addSteps("Mid Tom", [8, 9]);
+      addSteps("Low Tom", [0, 6]);
+      addSteps("Crash", [12]);
+    },
+    // 80
+    '4-Beat 18': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0, 3, 8, 11]);
+      addSteps("Snare", [1, 2]);
+      addSteps("High Tom", [4, 5, 6, 7]);
+      addSteps("Mid Tom", [9, 10]);
+      addSteps("Low Tom", [12, 13, 14, 15]);
+    },
+    // 81
+    '4-Beat 19': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [2, 3, 6, 7, 10, 11]);
+      addSteps("Snare", [0, 1]);
+      addSteps("High Tom", [4, 5]);
+      addSteps("Mid Tom", [8, 9]);
+      addSteps("Low Tom", [12, 13, 14, 15]);
+    },
+    // 82
+    '4-Beat 20': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0, 1, 4, 5, 8, 9, 12, 13]);
+      addSteps("Snare", [2, 3]);
+      addSteps("High Tom", [6, 7]);
+      addSteps("Mid Tom", [10, 11]);
+      addSteps("Low Tom", [14, 15]);
+    },
+    // 83
+    '4-Beat 21': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [1, 2, 5, 6, 9, 10, 13, 14]);
+      addSteps("Snare", [0, 3, 4]);
+      addSteps("High Tom", [7, 8]);
+      addSteps("Mid Tom", [11, 12]);
+      addSteps("Low Tom", [15]);
+    },
+    // 84
+    '4-Beat 22': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [3, 4, 8, 9, 12, 13]);
+      addSteps("Snare", [0, 1, 2]);
+      addSteps("High Tom", [5, 6, 7]);
+      addSteps("Mid Tom", [10, 11]);
+      addSteps("Low Tom", [14, 15]);
+    },
+    // 85
+    '4-Beat 23': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Snare", [0, 1, 2, 3, 4, 5, 6, 7]);
+      addSteps("High Tom", [8, 9]);
+      addSteps("Mid Tom", [12, 13]);
+      addSteps("Low Tom", [14, 15]);
+    },
+    // 86
+    '4-Beat 24': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [1, 2, 5, 6, 10, 11]);
+      addSteps("Snare", [4, 8]);
+      addSteps("Low Tom", [0, 3, 7, 9, 12, 13, 14, 15]);
+    },
+    // 87
+    '4-Beat 25': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [5, 6, 9, 10, 13]);
+      addSteps("Snare", [0, 2, 3, 12]);
+      addSteps("High Tom", [7]);
+      addSteps("Mid Tom", [11]);
+      addSteps("Low Tom", [14, 15]);
+    },
+    // 88
+    '4-Beat 26': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [4, 5, 13]);
+      addSteps("Snare", [0]);
+      addSteps("High Tom", [2, 3, 6, 7, 9]);
+      addSteps("Mid Tom", [8, 10, 11]);
+      addSteps("Low Tom", [12, 14, 15]);
+      addSteps("Crash", [0]);
+    },
+    // 89
+    '4-Beat 27': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [4, 5, 13]);
+      addSteps("Snare", [0]);
+      addSteps("High Tom", [2, 3, 6, 7, 9]);
+      addSteps("Mid Tom", [8, 10, 11]);
+      addSteps("Low Tom", [12, 14, 15]);
+      addSteps("Crash", [0]);
+    },
+    // 90
+    '4-Beat 28': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0, 1, 3, 5, 6, 8, 10, 11, 13]);
+      addSteps("Snare", [2, 4, 7, 9, 12, 14]);
+      addSteps("Crash", [2, 4, 7, 9, 12, 14]);
+    },
+    // 92 91はカット
+    '4-Beat 29': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0, 8]);
+      addSteps("Snare", [4, 12]);
+      addSteps("High Tom", [1, 2, 3]);
+      addSteps("Mid Tom", [5, 6, 7, 9, 10, 11]);
+      addSteps("Low Tom", [13, 14, 15]);
+      addSteps("Crash", [0]);
+    },
+    // 93
+    '4-Beat 30': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [4]);
+      addSteps("Snare", [0, 8, 9, 10, 12]);
+      addSteps("High Tom", [2, 3]);
+      addSteps("Mid Tom", [5]);
+      addSteps("Low Tom", [6]);
+      addSteps("Crash", [0, 12]);
+    },
+    // 94
+    '4-Beat 31': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0, 1, 8, 9]);
+      addSteps("Snare", [6, 7, 12, 14, 15]);
+      addSteps("High Tom", [2, 3, 4, 5]);
+      addSteps("Low Tom", [10]);
+    },
+    // 95
+    '4-Beat 32': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [1, 3, 5, 8, 11, 13]);
+      addSteps("Snare", [4, 12]);
+      addSteps("High Tom", [0, 6, 7]);
+      addSteps("Mid Tom", [9, 10]);
+      addSteps("Low Tom", [0, 2, 14, 15]);
+    },
+    // 96
+    '4-Beat 33': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0, 3, 5, 8, 11, 13]);
+      addSteps("Snare", [4, 12]);
+      addSteps("High Tom", [1, 2]);
+      addSteps("Mid Tom", [6, 7, 9, 10]);
+      addSteps("Low Tom", [14, 15]);
+    },
+    // 98-100はカット
+
+    // ドラムフィル演奏の究極ガイド 4:43
+    '4-Beat 34': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Snare", [0, 2, 6, 8, 12, 14, 15]);
+      addSteps("High Tom", [3, 9]);
+      addSteps("Low Tom", [4, 10]);
+    },
+    // ドラムフィル演奏の究極ガイド 4:43
+    '4-Beat 35': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Snare", [0, 2, 6, 8, 12, 14, 15]);
+      addSteps("High Tom", [3, 9]);
+      addSteps("Low Tom", [4, 10]);
+    },
+    // ドラムフィル演奏の究極ガイド 4:47
+    '4-Beat 36': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Snare", [0, 3, 4, 6, 9, 10, 12]);
+      addSteps("High Tom", [1, 7, 13]);
+      addSteps("Low Tom", [2, 8, 14, 15]);
+    },
+    // ドラムフィル演奏の究極ガイド 4:53
+    '4-Beat 37': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Snare", [0, 6, 9, 11, 12]);
+      addSteps("High Tom", [2, 4, 7, 10, 13]);
+      addSteps("Low Tom", [14, 15]);
+    },
+    // ドラムフィル演奏の究極ガイド 4:58
+    '4-Beat 38': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Snare", [0, 2, 3, 4, 5]);
+      addSteps("High Tom", [7, 9, 11]);
+      addSteps("Low Tom", [12, 13, 14]);
+    },
+    // ドラムフィル演奏の究極ガイド 6:28
+    '4-Beat 39': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0]);
+      addSteps("Snare", [2, 3, 4, 5]);
+      addSteps("Closed Hi-hat", [0]);
+      addSteps("High Tom", [6, 7, 8, 9]);
+      addSteps("Low Tom", [10, 11, 12, 13, 14, 15]);
+    },
+    // ドラムフィル演奏の究極ガイド 6:33
+    '4-Beat 40': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0]);
+      addSteps("Snare", [2, 3, 4, 5, 8, 10, 11, 12]);
+      addSteps("Closed Hi-hat", [0]);
+      addSteps("High Tom", [6, 13]);
+      addSteps("Low Tom", [14]);
+    },
+    // ドラムフィル演奏の究極ガイド 6:39
+    '4-Beat 41': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0]);
+      addSteps("Snare", [2, 4, 5, 7, 9, 11, 12, 13]);
+      addSteps("Closed Hi-hat", [0]);
+      addSteps("High Tom", [14]);
+    },
+    // ドラムフィル演奏の究極ガイド 6:44
+    '4-Beat 42': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Kick", [0]);
+      addSteps("Snare", [2, 4, 5, 10, 11, 13, 14]);
+      addSteps("Closed Hi-hat", [0]);
+      addSteps("High Tom", [7, 8]);
+    },
+    // ドラムフィル演奏の究極ガイド 7:22
+    '4-Beat 43': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Snare", [0, 6, 9, 11, 12]);
+      addSteps("High Tom", [2, 4, 7, 10, 13]);
+      addSteps("Low Tom", [14, 15]);
+    },
+    // ドラムフィル演奏の究極ガイド 7:27
+    '4-Beat 44': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Snare", [0, 1, 3, 5, 6, 8, 9, 11, 12, 14, 15]);
+      addSteps("High Tom", [2, 4, 7, 10, 13]);
+    },
+    // ドラムフィル演奏の究極ガイド 7:38
+    '4-Beat 45': (grid, getIdx) => {
+      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
+      addSteps("Snare", [0, 2, 6, 7, 12, 14, 15]);
+      addSteps("High Tom", [3, 9]);
+      addSteps("Low Tom", [4, 10]);
     }
   }
 };
