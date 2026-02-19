@@ -246,28 +246,6 @@ const PRESET_CATEGORIES = {
       addSteps("High Tom", [13]);
       addSteps("Low Tom", [14]);
     }
-    // 'Intense Fill 3': (grid, getIdx) => {
-    //   const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
-    //   addSteps("Kick", [0, 2, 8, 10]);
-    //   addSteps("Snare", [4, 12, 13]);
-    //   addSteps("Closed Hi-hat", [0, 2, 4, 6, 8, 10, 12, 14]);
-    //   addSteps("Open Hi-hat", [0, 4, 8, 12]);
-    //   addSteps("Low Tom", [4, 5, 10, 11]);
-    //   addSteps("Mid Tom", [2, 5, 11, 12]);
-    //   addSteps("High Tom", [2, 6, 10, 11]);
-    //   addSteps("Crash", [0, 8, 9]);
-    // },
-    // 'Intense Fill 3': (grid, getIdx) => {
-    //   const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
-    //   addSteps("Kick", [0, 2, 8, 10]);
-    //   addSteps("Snare", [4, 12, 13]);
-    //   addSteps("Closed Hi-hat", [0, 2, 4, 6, 8, 10, 12, 14]);
-    //   addSteps("Open Hi-hat", [0, 4, 8, 12]);
-    //   addSteps("Low Tom", [4, 5, 10, 11]);
-    //   addSteps("Mid Tom", [2, 5, 11, 12]);
-    //   addSteps("High Tom", [2, 6, 10, 11]);
-    //   addSteps("Crash", [0, 8, 9]);
-    // }
   },
   '2-Beat': {
     // 21
@@ -748,15 +726,6 @@ const PRESET_CATEGORIES = {
       addSteps("High Tom", [8, 13]);
       addSteps("Low Tom", [14]);
     },
-    // ドラムフィル演奏の究極ガイド 6:06
-    '3-Beat 26': (grid, getIdx) => {
-      const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
-      addSteps("Kick", [0]);
-      addSteps("Snare", [4, 6, 7, 10, 11, 12]);
-      addSteps("Closed Hi-hat", [0, 2, 4]);
-      addSteps("High Tom", [8, 13]);
-      addSteps("Low Tom", [14]);
-    },
     // ドラムフィル演奏の究極ガイド 6:11
     '3-Beat 27': (grid, getIdx) => {
       const addSteps = (name, steps) => steps.forEach(s => grid[getIdx(name)][s] = true);
@@ -1163,7 +1132,7 @@ export default function App() {
   const [grid, setGrid] = useState(() => {
     const initialGrid = INSTRUMENTS.map(() => Array(STEPS).fill(false));
     const getIdx = (name) => INSTRUMENTS.indexOf(name);
-    PRESET_CATEGORIES['1-Beat']['No.1 1-Beat 1'](initialGrid, getIdx);
+    PRESET_CATEGORIES['1-Beat']['1-Beat 1'](initialGrid, getIdx);
     return initialGrid;
   });
   
@@ -1179,7 +1148,7 @@ export default function App() {
   const bpmRef = useRef(bpm);
   useEffect(() => { bpmRef.current = bpm; }, [bpm]);
 
-  const [currentPreset, setCurrentPreset] = useState('No.1 1-Beat 1');
+  const [currentPreset, setCurrentPreset] = useState('1-Beat 1');
   const [activeCategory, setActiveCategory] = useState('1-Beat');
   
   const [isPresetMenuOpen, setIsPresetMenuOpen] = useState(false);
@@ -1330,8 +1299,10 @@ export default function App() {
       <div className="w-full max-w-7xl bg-slate-900 rounded-[2rem] shadow-[0_0_40px_rgba(0,0,0,0.5)] p-4 md:p-8 border border-slate-800 ring-1 ring-white/5">
         
         {/* Header Section */}
-        <div className="flex flex-col xl:flex-row justify-between items-center mb-6 md:mb-10 gap-6 xl:gap-8 flex-wrap">
-          <div className="flex items-center gap-3">
+        <div className="flex flex-col lg:flex-row justify-between items-center mb-6 md:mb-10 gap-6 lg:gap-8">
+          
+          {/* Title Area */}
+          <div className="flex items-center gap-3 w-full lg:w-auto justify-center lg:justify-start">
             <div className="p-2 md:p-3 bg-indigo-500/20 rounded-full border border-indigo-500/30 shadow-[0_0_15px_rgba(99,102,241,0.3)]">
               <Moon className="w-6 h-6 md:w-8 md:h-8 text-indigo-400" />
             </div>
@@ -1340,54 +1311,59 @@ export default function App() {
             </h1>
           </div>
 
-          <div className="flex flex-wrap justify-center items-center gap-3 md:gap-4 bg-slate-950/50 p-2.5 rounded-full shadow-inner border border-slate-800 w-full xl:w-auto">
-            <button
-              onClick={togglePlay}
-              className={`flex items-center gap-2 px-6 py-2 md:px-8 md:py-3 rounded-full font-bold transition-all duration-200 transform active:scale-95 shadow-lg ${
-                isPlaying 
-                  ? 'bg-rose-500 hover:bg-rose-600 text-white shadow-rose-900/50' 
-                  : 'bg-emerald-500 hover:bg-emerald-600 text-white shadow-emerald-900/50'
-              }`}
-            >
-              {isPlaying ? <Square size={18} fill="currentColor" /> : <Play size={18} fill="currentColor" />}
-              <span className="tracking-wider text-sm md:text-base">{isPlaying ? 'STOP' : 'PLAY'}</span>
-            </button>
+          {/* Controls Area (Split into 2 blocks to prevent layout break) */}
+          <div className="flex flex-wrap justify-center lg:justify-end items-center gap-4 w-full lg:w-auto">
+            
+            {/* Block 1: Play, BPM, Volume */}
+            <div className="flex flex-wrap justify-center items-center gap-3 md:gap-4 bg-slate-950/50 p-2 md:p-2.5 rounded-full shadow-inner border border-slate-800">
+              <button
+                onClick={togglePlay}
+                className={`flex items-center gap-2 px-6 py-2 md:px-8 md:py-3 rounded-full font-bold transition-all duration-200 transform active:scale-95 shadow-lg shrink-0 ${
+                  isPlaying 
+                    ? 'bg-rose-500 hover:bg-rose-600 text-white shadow-rose-900/50' 
+                    : 'bg-emerald-500 hover:bg-emerald-600 text-white shadow-emerald-900/50'
+                }`}
+              >
+                {isPlaying ? <Square size={18} fill="currentColor" /> : <Play size={18} fill="currentColor" />}
+                <span className="tracking-wider text-sm md:text-base">{isPlaying ? 'STOP' : 'PLAY'}</span>
+              </button>
 
-            {/* Controls Group */}
-            <div className="flex items-center gap-4 md:gap-6 border-l border-r border-slate-800 px-4 md:px-6 mx-0 md:mx-2">
-              {/* BPM Control */}
-              <div className="flex flex-col items-center">
-                <span className="text-[10px] text-slate-500 font-bold tracking-widest uppercase mb-1">BPM</span>
-                <div className="flex items-center gap-2 md:gap-3">
-                  <input
-                    type="range" min="60" max="200" value={bpm} onChange={(e) => setBpm(Number(e.target.value))}
-                    className="w-20 md:w-24 h-2 bg-slate-800 rounded-full appearance-none cursor-pointer accent-indigo-400"
-                  />
-                  <span className="w-8 text-right font-mono text-indigo-400 font-black text-base md:text-lg leading-none">{bpm}</span>
+              <div className="flex items-center gap-4 md:gap-6 border-l border-slate-800 pl-4 md:pl-6 pr-2 md:pr-4">
+                {/* BPM Control */}
+                <div className="flex flex-col items-center">
+                  <span className="text-[10px] text-slate-500 font-bold tracking-widest uppercase mb-1">BPM</span>
+                  <div className="flex items-center gap-2 md:gap-3">
+                    <input
+                      type="range" min="60" max="200" value={bpm} onChange={(e) => setBpm(Number(e.target.value))}
+                      className="w-20 md:w-24 h-2 bg-slate-800 rounded-full appearance-none cursor-pointer accent-indigo-400"
+                    />
+                    <span className="w-8 text-right font-mono text-indigo-400 font-black text-base md:text-lg leading-none">{bpm}</span>
+                  </div>
                 </div>
-              </div>
 
-              {/* Volume Control */}
-              <div className="flex flex-col items-center">
-                <span className="text-[10px] text-slate-500 font-bold tracking-widest uppercase mb-1">VOL</span>
-                <div className="flex items-center gap-2">
-                  <Volume1 size={16} className="text-slate-500" />
-                  <input
-                    type="range" min="0" max="1" step="0.01" value={volume} onChange={handleVolumeChange}
-                    className="w-16 md:w-20 h-2 bg-slate-800 rounded-full appearance-none cursor-pointer accent-indigo-400"
-                  />
+                {/* Volume Control */}
+                <div className="flex flex-col items-center">
+                  <span className="text-[10px] text-slate-500 font-bold tracking-widest uppercase mb-1">VOL</span>
+                  <div className="flex items-center gap-2">
+                    <Volume1 size={16} className="text-slate-500" />
+                    <input
+                      type="range" min="0" max="1" step="0.01" value={volume} onChange={handleVolumeChange}
+                      className="w-16 md:w-20 h-2 bg-slate-800 rounded-full appearance-none cursor-pointer accent-indigo-400"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div className="flex items-center gap-2">
+            {/* Block 2: Presets & Tools */}
+            <div className="flex items-center gap-2 bg-slate-950/50 p-2 md:p-2.5 rounded-full shadow-inner border border-slate-800">
               <div className="relative" ref={presetMenuRef}>
                 <button 
                   onClick={() => setIsPresetMenuOpen(!isPresetMenuOpen)}
-                  className={`flex items-center gap-2 px-4 py-2 md:px-5 md:py-3 bg-slate-800 hover:bg-slate-700 rounded-full text-xs md:text-sm text-slate-300 transition-all border border-slate-700 font-bold shadow-sm ${isPresetMenuOpen ? 'border-indigo-500 text-indigo-300 ring-1 ring-indigo-500/50' : ''}`}
+                  className={`flex items-center gap-2 px-4 py-2 md:px-5 md:py-3 bg-slate-800 hover:bg-slate-700 rounded-full text-xs md:text-sm text-slate-300 transition-all border border-slate-700 font-bold shadow-sm shrink-0 ${isPresetMenuOpen ? 'border-indigo-500 text-indigo-300 ring-1 ring-indigo-500/50' : ''}`}
                 >
                   <Music size={16} className={isPresetMenuOpen ? "text-indigo-400" : "text-slate-400"} />
-                  <span className="hidden sm:inline">{currentPreset || "Select Beat"}</span>
+                  <span className="hidden sm:inline whitespace-nowrap">{currentPreset || "Select Beat"}</span>
                 </button>
                 {isPresetMenuOpen && (
                   <div className="absolute top-full right-0 mt-3 w-72 md:w-80 bg-slate-900 border border-slate-700 rounded-3xl shadow-2xl z-30 overflow-hidden">
@@ -1420,7 +1396,7 @@ export default function App() {
 
               <button 
                 onClick={selectRandomPreset}
-                className="p-2 md:p-3 bg-slate-800 text-slate-400 hover:text-indigo-300 hover:bg-slate-700 rounded-full transition-all border border-slate-700 shadow-sm hover:border-indigo-500/50 group"
+                className="p-2 md:p-3 bg-slate-800 text-slate-400 hover:text-indigo-300 hover:bg-slate-700 rounded-full transition-all border border-slate-700 shadow-sm hover:border-indigo-500/50 group shrink-0"
                 title="Random from category"
               >
                 <Shuffle size={20} className="group-active:rotate-180 transition-transform duration-500" />
@@ -1428,7 +1404,7 @@ export default function App() {
 
               <button 
                 onClick={exportMIDI}
-                className="p-2 md:p-3 bg-slate-800 text-slate-400 hover:text-cyan-300 hover:bg-slate-700 rounded-full transition-all border border-slate-700 shadow-sm hover:border-cyan-500/50"
+                className="p-2 md:p-3 bg-slate-800 text-slate-400 hover:text-cyan-300 hover:bg-slate-700 rounded-full transition-all border border-slate-700 shadow-sm hover:border-cyan-500/50 shrink-0"
                 title="Export MIDI"
               >
                 <Download size={20} />
@@ -1436,7 +1412,7 @@ export default function App() {
 
               <button 
                 onClick={clearGrid}
-                className="p-2 md:p-3 bg-slate-800 text-slate-400 hover:text-rose-400 hover:bg-slate-700 rounded-full transition-all border border-slate-700 shadow-sm hover:border-rose-500/50 ml-1"
+                className="p-2 md:p-3 bg-slate-800 text-slate-400 hover:text-rose-400 hover:bg-slate-700 rounded-full transition-all border border-slate-700 shadow-sm hover:border-rose-500/50 shrink-0"
                 title="Reset Pattern"
               >
                 <Trash2 size={20} />
